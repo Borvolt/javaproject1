@@ -37,9 +37,11 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         txtTinggi = new javax.swing.JTextField();
         txtkeadaan = new javax.swing.JTextField();
         txtMT = new javax.swing.JTextField();
-        btnprint = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtnama = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        gender2 = new javax.swing.JRadioButton();
+        gender1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ini program sederhana sekali");
@@ -60,76 +62,102 @@ public class frame_badan_ideal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btncek);
-        btncek.setBounds(260, 222, 90, 40);
+        btncek.setBounds(70, 320, 90, 40);
 
         jLabel1.setText("Tinggi Badan (cm)");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 130, 112, 26);
+        jLabel1.setBounds(50, 160, 112, 26);
 
         jLabel2.setText("Berat Badan (kg)");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 170, 112, 26);
+        jLabel2.setBounds(50, 200, 112, 26);
 
         jLabel3.setText("Index Massa Tubuh (IMT)");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(50, 280, 151, 26);
+        jLabel3.setBounds(50, 240, 151, 26);
 
         jLabel4.setText("Keadaan badan");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 320, 88, 26);
+        jLabel4.setBounds(50, 280, 88, 26);
 
-        txtberat.setText("ini textfield");
+        txtberat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtberatActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtberat);
-        txtberat.setBounds(240, 170, 195, 24);
-
-        txtTinggi.setText("ini textfield");
+        txtberat.setBounds(240, 194, 195, 30);
         getContentPane().add(txtTinggi);
-        txtTinggi.setBounds(240, 130, 195, 24);
+        txtTinggi.setBounds(240, 154, 195, 30);
 
-        txtkeadaan.setText("ini textfield");
+        txtkeadaan.setEditable(false);
+        txtkeadaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtkeadaanActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtkeadaan);
-        txtkeadaan.setBounds(240, 320, 195, 24);
+        txtkeadaan.setBounds(240, 280, 195, 30);
 
-        txtMT.setText("ini textfield");
+        txtMT.setEditable(false);
         getContentPane().add(txtMT);
-        txtMT.setBounds(240, 280, 195, 24);
-
-        btnprint.setText("Print");
-        getContentPane().add(btnprint);
-        btnprint.setBounds(360, 222, 90, 40);
+        txtMT.setBounds(240, 240, 195, 30);
 
         jLabel5.setText("Nama");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 90, 110, 30);
-
-        txtnama.setText("ini textfield");
+        jLabel5.setBounds(50, 80, 110, 30);
         getContentPane().add(txtnama);
-        txtnama.setBounds(240, 90, 195, 24);
+        txtnama.setBounds(240, 80, 195, 30);
 
-        setSize(new java.awt.Dimension(525, 426));
+        jLabel6.setText("Gender");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(50, 120, 120, 40);
+
+        gender2.setText("Wanita");
+        getContentPane().add(gender2);
+        gender2.setBounds(310, 120, 111, 28);
+
+        gender1.setText("Pria");
+        getContentPane().add(gender1);
+        gender1.setBounds(240, 120, 54, 28);
+
+        setSize(new java.awt.Dimension(1025, 426));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncekActionPerformed
-        float tinggi, berat, hasil, hasil2, IMT, keadaaanbdn;
+        float tinggi, berat, hasil, hasil2, IMT ;
         
         tinggi = Float.parseFloat(txtTinggi.getText());
         berat = Float.parseFloat(txtberat.getText());
-        hasil = (float)(tinggi/100);
-        hasil2 = (float)(hasil*hasil);
+       
+        hasil = (float)(tinggi/100); // meter convert menjadi cm 
+        hasil2 = (float)(hasil*hasil);      
         IMT = (float) (berat/hasil2);
         
         txtMT.setText("" + IMT);
         
-        if(IMT >=30)
-               txtkeadaan.setText("Kegemukan");
-            else if(IMT>=25)
-            txtkeadaan.setText("agak gemuk");        
-            else if(IMT>=18.5)
+        if(IMT >=35)
+            txtkeadaan.setText("Obesitas II");
+        else if (IMT >= 30)
+            txtkeadaan.setText("Obesitas I");
+        else if(IMT>=25)
+            txtkeadaan.setText("Kegemukan");            
+        else if(IMT>=18.5)
             txtkeadaan.setText("Tubuh Ideal");
         else
             txtkeadaan.setText("kurus");
     }//GEN-LAST:event_btncekActionPerformed
+
+    
+    private void txtberatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtberatActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtberatActionPerformed
+
+    private void txtkeadaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkeadaanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtkeadaanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,12 +197,14 @@ public class frame_badan_ideal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
     private javax.swing.JButton btncek;
-    private javax.swing.JButton btnprint;
+    private javax.swing.JRadioButton gender1;
+    private javax.swing.JRadioButton gender2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtMT;
     private javax.swing.JTextField txtTinggi;
     private javax.swing.JTextField txtberat;
