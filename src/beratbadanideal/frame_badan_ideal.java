@@ -42,6 +42,7 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         gender2 = new javax.swing.JRadioButton();
         gender1 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ini program sederhana sekali");
@@ -55,14 +56,14 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         getContentPane().add(Title);
         Title.setBounds(110, 10, 310, 50);
 
-        btncek.setText("Cek");
+        btncek.setText("Check");
         btncek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncekActionPerformed(evt);
             }
         });
         getContentPane().add(btncek);
-        btncek.setBounds(70, 320, 90, 40);
+        btncek.setBounds(460, 250, 120, 50);
 
         jLabel1.setText("Tinggi Badan (cm)");
         getContentPane().add(jLabel1);
@@ -114,6 +115,11 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         jLabel6.setBounds(50, 120, 120, 40);
 
         gender2.setText("Wanita");
+        gender2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gender2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(gender2);
         gender2.setBounds(310, 120, 111, 28);
 
@@ -121,7 +127,16 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         getContentPane().add(gender1);
         gender1.setBounds(240, 120, 54, 28);
 
-        setSize(new java.awt.Dimension(1025, 426));
+        jButton1.setText("New / Clear");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(460, 180, 120, 50);
+
+        setSize(new java.awt.Dimension(618, 426));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,6 +173,20 @@ public class frame_badan_ideal extends javax.swing.JFrame {
     private void txtkeadaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkeadaanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtkeadaanActionPerformed
+    
+    //clear the fields
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        txtnama.setText("");
+        txtberat.setText("");
+        txtTinggi.setText("");
+        gender1.setEnabled(false);
+        gender2.setEnabled(false);
+ 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void gender2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gender2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gender2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +228,7 @@ public class frame_badan_ideal extends javax.swing.JFrame {
     private javax.swing.JButton btncek;
     private javax.swing.JRadioButton gender1;
     private javax.swing.JRadioButton gender2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
