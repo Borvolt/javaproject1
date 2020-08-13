@@ -5,6 +5,9 @@
  */
 package beratbadanideal;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LUKMAN
@@ -86,8 +89,19 @@ public class frame_badan_ideal extends javax.swing.JFrame {
                 txtberatActionPerformed(evt);
             }
         });
+        txtberat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtberatKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtberat);
         txtberat.setBounds(240, 194, 195, 30);
+
+        txtTinggi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTinggiKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtTinggi);
         txtTinggi.setBounds(240, 154, 195, 30);
 
@@ -124,6 +138,11 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         gender2.setBounds(310, 120, 111, 28);
 
         gender1.setText("Pria");
+        gender1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gender1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(gender1);
         gender1.setBounds(240, 120, 54, 28);
 
@@ -141,27 +160,29 @@ public class frame_badan_ideal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncekActionPerformed
+        String nama;
         float tinggi, berat, hasil, hasil2, IMT ;
-        
+        nama = txtnama.getText();
         tinggi = Float.parseFloat(txtTinggi.getText());
         berat = Float.parseFloat(txtberat.getText());
-       
+
         hasil = (float)(tinggi/100); // meter convert menjadi cm 
         hasil2 = (float)(hasil*hasil);      
-        IMT = (float) (berat/hasil2);
-        
+        IMT = (float)(berat/hasil2);
+
         txtMT.setText("" + IMT);
-        
-        if(IMT >=35)
+
+        if(IMT >=35){
             txtkeadaan.setText("Obesitas II");
-        else if (IMT >= 30)
+        }else if (IMT >= 30){
             txtkeadaan.setText("Obesitas I");
-        else if(IMT>=25)
+        }else if(IMT>=25){
             txtkeadaan.setText("Kegemukan");            
-        else if(IMT>=18.5)
+        }else if(IMT>=18.5){
             txtkeadaan.setText("Tubuh Ideal");
-        else
+        }else
             txtkeadaan.setText("kurus");
+        JOptionPane.showMessageDialog(null, "Data "+nama+" berhasil diinput");
     }//GEN-LAST:event_btncekActionPerformed
 
     
@@ -179,14 +200,48 @@ public class frame_badan_ideal extends javax.swing.JFrame {
         txtnama.setText("");
         txtberat.setText("");
         txtTinggi.setText("");
-        gender1.setEnabled(false);
-        gender2.setEnabled(false);
+        
+        if(gender1.isSelected())
+            gender1.setSelected(false);
+        else if(gender2.isSelected())
+            gender2.setSelected(false);
+        
+        txtkeadaan.setText("");
+        txtMT.setText("");
  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void gender2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gender2ActionPerformed
-        // TODO add your handling code here:
+        if(gender2.isSelected())
+        {
+            gender1.setSelected(false);
+        }
     }//GEN-LAST:event_gender2ActionPerformed
+
+    private void gender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gender1ActionPerformed
+        if(gender1.isSelected())
+        {
+            gender2.setSelected(false);
+        }
+    }//GEN-LAST:event_gender1ActionPerformed
+
+    private void txtTinggiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTinggiKeyTyped
+        //mengisi txtfield hanya angka/number saja
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE))
+        {
+        evt.consume();
+        } 
+    }//GEN-LAST:event_txtTinggiKeyTyped
+
+    private void txtberatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtberatKeyTyped
+        char c=evt.getKeyChar();
+        if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE))
+        {
+        evt.consume();
+        }
+        
+    }//GEN-LAST:event_txtberatKeyTyped
 
     /**
      * @param args the command line arguments
